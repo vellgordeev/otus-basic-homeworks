@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Scanner scanner1 = new Scanner(System.in);
         System.out.println("Введите число от 1 до 5: ");
         int number = scanner.nextInt();
 
