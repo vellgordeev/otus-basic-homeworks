@@ -79,7 +79,7 @@ public class Main {
     Реализуйте метод, принимающий на вход набор целочисленных массивов, и получающий новый
     массив равный сумме входящих;
      */
-    private static void sumArrays(int[][] arr) {
+    private static void sumArrays(int[]... arr) {
         int maxLengthOfArray = 0;
 
         for (int i = 0; i < arr.length; i++) {
