@@ -2,9 +2,9 @@ package ru.gordeev.homeworks.homework4;
 
 public class Box {
 
-    private int length;
-    private int width;
-    private int height;
+    private final int length;
+    private final int width;
+    private final int height;
     private String color;
     private boolean isOpen;
     private String[] items;
@@ -39,20 +39,15 @@ public class Box {
     }
 
     public boolean isOpen() {
-        if (isOpen) {
-            System.out.println("Коробка открыта");
-        } else {
-            System.out.println("Коробка закрыта");
-        }
         return isOpen;
     }
 
-    public void openBox() {
+    public void open() {
         this.isOpen = true;
         System.out.println("Вы открыли коробку");
     }
 
-    public void closeBox() {
+    public void close() {
         this.isOpen = false;
         System.out.println("Вы закрыли коробку");
     }
