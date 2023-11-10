@@ -11,10 +11,6 @@ public abstract class Animal {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getRunSpeed() {
         return runSpeed;
     }
@@ -50,6 +46,24 @@ public abstract class Animal {
 
         System.out.println(name + " пробежал(а) " + distance + " метров" + " со скоростью " + runSpeed + " м/с"
                 + " за " + timeForAction + " сек.");
+        return timeForAction;
+    }
+
+    public double swim(int distance) {
+        if (swimSpeed <= 0) {
+            System.out.println("Животное не умеет плавать");
+            return -1;
+        }
+
+        double timeForAction = distance / swimSpeed;
+        stamina = (stamina - distance * 2);
+        if (stamina <= 0) {
+            timeForAction = -1;
+            System.out.println(name + " не хватает выносливости, он устал(а)");
+            return timeForAction;
+        }
+
+        System.out.println(name + " проплыл(а) " + distance + " метров со скоростью " + swimSpeed + " м/c за " + timeForAction + " секунд");
         return timeForAction;
     }
 
