@@ -7,6 +7,7 @@ public abstract class Animal {
     private double swimSpeed;
     private double stamina;
 
+
     public String getName() {
         return name;
     }
@@ -35,18 +36,18 @@ public abstract class Animal {
     }
 
     protected double run(int distance) {
-        double timeForAction = distance / runSpeed;
+        double timeForRun = distance / runSpeed;
 
         stamina -= distance;
         if (stamina <= 0) {
-            timeForAction = -1;
+            timeForRun = -1;
             System.out.println(name + " устал(а)");
-            return timeForAction;
+            return timeForRun;
         }
 
         System.out.println(name + " пробежал(а) " + distance + " метров" + " со скоростью " + runSpeed + " м/с"
-                + " за " + timeForAction + " сек.");
-        return timeForAction;
+                + " за " + timeForRun + " сек.");
+        return timeForRun;
     }
 
     public double swim(int distance) {
@@ -55,16 +56,21 @@ public abstract class Animal {
             return -1;
         }
 
-        double timeForAction = distance / swimSpeed;
-        stamina = (stamina - distance * 2);
-        if (stamina <= 0) {
-            timeForAction = -1;
-            System.out.println(name + " не хватает выносливости, он устал(а)");
-            return timeForAction;
+        double timeForSwim = distance / swimSpeed;
+        if (this instanceof Dog) {
+            stamina -= distance * 2;
+        } else if (this instanceof Horse) {
+            stamina -= distance * 4;
         }
 
-        System.out.println(name + " проплыл(а) " + distance + " метров со скоростью " + swimSpeed + " м/c за " + timeForAction + " секунд");
-        return timeForAction;
+        if (stamina <= 0) {
+            timeForSwim = -1;
+            System.out.println(name + " не хватает выносливости, он устал(а)");
+            return timeForSwim;
+        }
+
+        System.out.println(name + " проплыл(а) " + distance + " метров со скоростью " + swimSpeed + " м/c за " + timeForSwim + " секунд");
+        return timeForSwim;
     }
 
     protected void info() {
