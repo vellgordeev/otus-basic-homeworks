@@ -2,10 +2,11 @@ package ru.gordeev.homeworks.homework5;
 
 public abstract class Animal {
 
-    private String name;
-    private double runSpeed;
-    private double swimSpeed;
-    private double stamina;
+    protected String name;
+    protected double runSpeed;
+    protected double swimSpeed;
+    protected double stamina;
+    protected int costRatio;
 
 
     public String getName() {
@@ -28,23 +29,22 @@ public abstract class Animal {
         this.stamina = stamina;
     }
 
-    public Animal(String name, double runSpeed, double swimSpeed, double stamina) {
+    public Animal(String name, double runSpeed, double swimSpeed, double stamina, int costRatio) {
         this.name = name;
         this.runSpeed = runSpeed;
         this.swimSpeed = swimSpeed;
         this.stamina = stamina;
+        this.costRatio = costRatio;
     }
 
     protected double run(int distance) {
-        double timeForRun = distance / runSpeed;
-
         stamina -= distance;
         if (stamina <= 0) {
-            timeForRun = -1;
             System.out.println(name + " устал(а)");
-            return timeForRun;
+            return -1;
         }
 
+        double timeForRun = distance / runSpeed;
         System.out.println(name + " пробежал(а) " + distance + " метров" + " со скоростью " + runSpeed + " м/с"
                 + " за " + timeForRun + " сек.");
         return timeForRun;
@@ -56,20 +56,16 @@ public abstract class Animal {
             return -1;
         }
 
-        double timeForSwim = distance / swimSpeed;
-        if (this instanceof Dog) {
-            stamina -= distance * 2;
-        } else if (this instanceof Horse) {
-            stamina -= distance * 4;
-        }
-
+        stamina -= distance * costRatio;
         if (stamina <= 0) {
-            timeForSwim = -1;
+            stamina = 0;
             System.out.println(name + " не хватает выносливости, он устал(а)");
-            return timeForSwim;
+            return -1;
         }
 
-        System.out.println(name + " проплыл(а) " + distance + " метров со скоростью " + swimSpeed + " м/c за " + timeForSwim + " секунд");
+        double timeForSwim = distance / swimSpeed;
+        System.out.println(name + " проплыл(а) " + distance + " метров со скоростью " + swimSpeed + " м/c за "
+                + timeForSwim + " секунд");
         return timeForSwim;
     }
 
