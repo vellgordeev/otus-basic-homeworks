@@ -38,14 +38,10 @@ public class Cat {
 
         if (plate.decreaseFood(amountOfFood)) {
             /* Для того, чтобы аппетит не становился отрицательным, приравниваем к 0: */
-            int temp = appetite - amountOfFood;
-            if (temp < 0) {
-                appetite = 0;
-                isFull = true;
-                return;
-            }
-
             appetite -= amountOfFood;
+            if (appetite < 0) {
+                appetite = 0;
+            }
             isFull = true;
         } else {
             System.out.println("Коту не хватило еды и он не ел");
