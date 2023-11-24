@@ -28,8 +28,7 @@ public class Main {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 try {
-                    int temp = Integer.parseInt(array[i][j]);
-                    sum += temp;
+                    sum += Integer.parseInt(array[i][j]);
                 } catch (NumberFormatException e) {
                     throw new AppArrayDataException("Неправильный формат данных в массиве!");
                 }
