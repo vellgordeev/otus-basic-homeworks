@@ -4,15 +4,6 @@ import java.util.*;
 
 public class ArraylistMethods {
 
-    public static void main(String[] args) {
-        ArrayList<Integer> sequentialList = createSequentialList(1, 10);
-        System.out.println(sequentialList);
-
-        incrementAllElementsByNumber(sequentialList, 1);
-        System.out.println(sequentialList);
-
-    }
-
     /*
         Реализуйте метод, принимающий в качестве аргументов числа min и max, и возвращающий ArrayList с
         набором последовательных значений в указанном диапазоне (min и max включительно, шаг - 1);
