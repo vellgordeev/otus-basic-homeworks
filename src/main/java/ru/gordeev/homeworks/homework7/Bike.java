@@ -7,12 +7,21 @@ public class Bike implements Movable {
     private Human driver;
 
 
-    public Bike(Human driver) {
+    @Override
+    public void setDriver(Human driver) {
         this.driver = driver;
+    }
+
+    public void unsetDriver() {
+        setDriver(null);
     }
 
     @Override
     public void move(TerrainType terrainType, int distance) {
+        if (driver == null) {
+            System.out.println("Нужен человек для управления транспортным средством!");
+            return;
+        }
         if (terrainType == null) {
             System.out.println("Нужно указать местность!");
             return;
@@ -41,4 +50,5 @@ public class Bike implements Movable {
         driver.setStamina(tempStamina);
         System.out.println("Проехал на велосипеде расстояние: " + distance + " км. Тип местности: " + terrainType.getType());
     }
+
 }

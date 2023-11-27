@@ -18,6 +18,7 @@ public class Human {
 
     public void setTransport(Movable transport) {
         this.transport = transport;
+
     }
 
     public String getName() {

@@ -2,14 +2,30 @@ package ru.gordeev.homeworks.homework7;
 
 public class Rover implements Movable {
 
+    private Human driver;
     private int gas;
+
 
     public Rover(int gas) {
         this.gas = gas;
     }
 
+
+    @Override
+    public void setDriver(Human driver) {
+        this.driver = driver;
+    }
+
+    public void unsetDriver() {
+        setDriver(null);
+    }
+
     @Override
     public void move(TerrainType terrainType, int distance) {
+        if (driver == null) {
+            System.out.println("Нужен человек для управления транспортным средством!");
+            return;
+        }
         if (terrainType == null) {
             System.out.println("Нужно указать местность!");
             return;

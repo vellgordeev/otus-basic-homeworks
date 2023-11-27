@@ -4,11 +4,22 @@ import static ru.gordeev.homeworks.homework7.TerrainType.SWAMP;
 
 public class Horse implements Movable {
 
+    private Human driver;
     private int stamina;
 
 
     public Horse(int stamina) {
         this.stamina = stamina;
+    }
+
+
+    @Override
+    public void setDriver(Human driver) {
+        this.driver = driver;
+    }
+
+    public void unsetDriver() {
+        setDriver(null);
     }
 
     public int getStamina() {
@@ -17,6 +28,10 @@ public class Horse implements Movable {
 
     @Override
     public void move(TerrainType terrainType, int distance) {
+        if (driver == null) {
+            System.out.println("Нужен человек для управления транспортным средством!");
+            return;
+        }
         if (terrainType == null) {
             System.out.println("Нужно указать местность!");
             return;
