@@ -4,34 +4,28 @@ import java.util.*;
 
 public class PhoneBook {
 
-    private Map<String, Long> phoneBook;
+    private Map<String, List<Long>> phoneBook;
 
     public PhoneBook() {
         this.phoneBook = new HashMap<>();
     }
 
-    public void add(String name, long phone) {
-        phoneBook.put(name, phone);
+    public void add(String name, List<Long> phones) {
+        phoneBook.put(name, phones);
     }
 
     public List<Long> find(String name) {
-        List<Long> phones = new ArrayList<>();
-
-        for (Map.Entry<String, Long> entry : phoneBook.entrySet()) {
-            if (entry.getKey().equals(name)) {
-                phones.add(entry.getValue());
-            }
-
-        }
-
-        return phones;
+        if (phoneBook.get(name) != null)
+            return phoneBook.get(name);
+        else
+            throw new NullPointerException("There is no stored phones with this name");
     }
 
     public boolean containsPhoneNumber(Long phone) {
-        for (Long ph : phoneBook.values()) {
-            if (phone.equals(ph)) {
+        for (List<Long> phs : phoneBook.values()) {
+            if (phs.contains(phone))
                 return true;
-            }
+
         }
         return false;
     }
