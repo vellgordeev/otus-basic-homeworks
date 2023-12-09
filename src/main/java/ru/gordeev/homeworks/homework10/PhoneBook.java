@@ -4,17 +4,17 @@ import java.util.*;
 
 public class PhoneBook {
 
-    private Map<String, List<Long>> phoneBook;
+    private Map<String, Set<Long>> phoneBook;
 
     public PhoneBook() {
         this.phoneBook = new HashMap<>();
     }
 
-    public void add(String name, List<Long> phones) {
+    public void add(String name, Set<Long> phones) {
         phoneBook.put(name, phones);
     }
 
-    public List<Long> find(String name) {
+    public Set<Long> find(String name) {
         if (phoneBook.get(name) != null)
             return phoneBook.get(name);
         else
@@ -22,7 +22,7 @@ public class PhoneBook {
     }
 
     public boolean containsPhoneNumber(Long phone) {
-        for (List<Long> phs : phoneBook.values()) {
+        for (var phs : phoneBook.values()) {
             if (phs.contains(phone))
                 return true;
 
